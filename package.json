@@ -1,0 +1,24 @@
+{
+  "name": "docmind",
+  "version": "1.0.0",
+  "description": "Document intelligence pipeline: turn invoices and receipts into structured JSON with field-level confidence, validation rules and a human review queue.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "author": "Arvion Technologies <hello@arviontech.net> (https://arviontech.net)",
+  "homepage": "https://arvion-technology.github.io/labs/demos/docmind/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arvion-technology/docmind.git"
+  },
+  "scripts": {
+    "test": "node --test",
+    "demo": "node scripts/serve.mjs . 4173",
+    "shot": "node scripts/shot.mjs 1440 900 docs/screenshot.png",
+    "shot:2": "node scripts/shot.mjs 1440 900 docs/screenshot-2.png #validation",
+    "verify": "node --test test/ && node scripts/serve-check.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
