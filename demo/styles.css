@@ -1,0 +1,127 @@
+/* DocMind demo — review workspace styles on top of the Arvion shell. */
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1.05fr) minmax(0, 1.2fr);
+  gap: 16px;
+  align-items: start;
+}
+
+/* ---------- document list ------------------------------------------------ */
+.doc-list { padding: 12px 10px 10px; }
+#doc-list { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; max-height: 610px; overflow: auto; }
+.doc-item {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 9px 10px;
+  cursor: pointer;
+  color: var(--text-2);
+}
+.doc-item:hover { background: rgba(255, 255, 255, 0.03); }
+.doc-item.selected { background: var(--gold-soft); border-color: var(--gold-line); }
+.doc-item .vendor { display: block; color: var(--text); font-size: 12.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.doc-item .meta { display: flex; align-items: center; gap: 6px; margin: 4px 0 6px; font-size: 10.5px; color: var(--muted); }
+.doc-item .meta .mono { color: var(--text-2); }
+.doc-item .progress { height: 4px; }
+.doc-item .progress > i { transition: width 0.2s; }
+
+/* ---------- source pane --------------------------------------------------- */
+.source-card { min-width: 0; }
+.source-view {
+  margin-top: 10px;
+  max-height: 588px;
+  overflow: auto;
+  background: #070a11;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font: 12px/1.75 var(--font-mono);
+  color: #b7c3d6;
+}
+.src-line { display: flex; gap: 12px; white-space: pre-wrap; }
+.src-line .ln { color: #445066; width: 18px; flex: none; text-align: right; user-select: none; }
+.src-line .tx { flex: 1; min-width: 0; }
+.src-line mark { padding: 0 2px; border-radius: 3px; }
+.src-line mark.money { background: rgba(245, 194, 107, 0.18); color: var(--gold); }
+.src-line mark.date { background: rgba(58, 123, 255, 0.2); color: #9cc0ff; }
+.src-line.hit { background: rgba(245, 194, 107, 0.05); }
+
+/* ---------- fields -------------------------------------------------------- */
+.fields-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 12px; }
+.field.wide { grid-column: span 2; }
+.field-label { display: flex; align-items: center; gap: 6px; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.field-label .spacer { flex: 1; }
+.field .input { padding: 6px 9px; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.field .input[data-state="low"] { border-color: rgba(248, 113, 113, 0.45); }
+.field .input[data-state="check"] { border-color: rgba(245, 194, 107, 0.45); }
+.field .input[data-state="corrected"] { border-color: rgba(52, 211, 153, 0.5); }
+.conf { font: 600 9.5px var(--font-mono); padding: 1px 5px; border-radius: 4px; letter-spacing: 0; text-transform: none; }
+.conf.high { color: var(--green); background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.3); }
+.conf.good { color: #8fb4ff; background: rgba(58, 123, 255, 0.12); border: 1px solid rgba(58, 123, 255, 0.3); }
+.conf.check { color: var(--gold); background: var(--gold-soft); border: 1px solid var(--gold-line); }
+.conf.low { color: var(--red); background: var(--red-soft); border: 1px solid rgba(248, 113, 113, 0.35); }
+.conf.missing { color: var(--muted); border: 1px dashed var(--line-strong); }
+.line-items { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px; }
+.line-item { display: flex; align-items: baseline; gap: 8px; font-size: 11.5px; padding: 3px 0; color: var(--text-2); }
+.line-item .desc { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.line-item .mono { color: var(--muted); font-size: 10.5px; }
+.line-items-head { display: flex; align-items: center; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-bottom: 6px; }
+
+/* ---------- issues -------------------------------------------------------- */
+.issue {
+  display: flex;
+  gap: 9px;
+  padding: 9px 10px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  background: rgba(255, 255, 255, 0.015);
+  margin-bottom: 8px;
+}
+.issue.error { border-left-color: var(--red); }
+.issue.warning { border-left-color: var(--gold); }
+.issue .msg { font-size: 12px; color: var(--text-2); line-height: 1.45; }
+.issue .detail { font-size: 10.5px; color: var(--muted); margin-top: 3px; }
+.issue .spacer { flex: 1; }
+.empty-good { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--green); padding: 6px 0; }
+
+/* ---------- validation ---------------------------------------------------- */
+.check-row { display: grid; grid-template-columns: minmax(0, 1fr) 62px; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.check-row:last-child { border-bottom: 0; }
+.check-label { font-size: 12.5px; color: var(--text-2); }
+.check-detail { font-size: 10.5px; color: var(--muted); margin-top: 2px; font-family: var(--font-mono); }
+.check-status { text-align: right; }
+.status-pass { color: var(--green); }
+.status-fail { color: var(--red); }
+.status-skip { color: var(--muted); }
+
+/* ---------- export -------------------------------------------------------- */
+.export-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 12.5px; }
+.export-row:last-child { border-bottom: 0; }
+.export-row .doc { flex: 1; min-width: 0; }
+.export-row .vendor { color: var(--text); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.export-row .meta { color: var(--muted); font-size: 10.5px; }
+
+@media (max-width: 1280px) {
+  .review-grid { grid-template-columns: 210px minmax(0, 1fr); }
+  .review-grid > .col { grid-column: span 2; }
+}
+@media (max-width: 1080px) {
+  .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .review-grid { grid-template-columns: 1fr; }
+  .review-grid > .col { grid-column: auto; }
+  .source-view { max-height: 300px; }
+}
+
+/* Badges are single tokens: "needs review" must not wrap inside a card head. */
+.badge { white-space: nowrap; }
+.table .num { white-space: nowrap; }
