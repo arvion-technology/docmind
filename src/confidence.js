@@ -1,6 +1,6 @@
 // Confidence scoring.
 //
-// Confidence is not "how sure the regex is" — it is a per-field estimate that
+// Confidence is not "how sure the regex is", it is a per-field estimate that
 // has to answer one question: would a human sign this off without looking? Three
 // signals feed it: how the value was found (label vs heuristic), whether the
 // cross-checks passed, and how the document hangs together. A failed

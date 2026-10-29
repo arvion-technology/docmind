@@ -61,7 +61,7 @@ export function amountsIn(line) {
 }
 
 export function formatMoney(minor, currency = "USD") {
-  if (minor === null || minor === undefined) return "—";
+  if (minor === null || minor === undefined) return ", ";
   const sign = minor < 0 ? "-" : "";
   const abs = Math.abs(minor);
   const whole = Math.floor(abs / 100).toLocaleString("en-US");

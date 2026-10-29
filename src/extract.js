@@ -3,7 +3,7 @@
 // The extractor is deliberately deterministic: label patterns, printed dates and
 // whitespace columns. No model, no OCR and no fuzzy guessing. That makes it
 // predictable on the eight fixture documents and honest about what it cannot
-// read — a field it could not find is null with low confidence, not invented.
+// read, a field it could not find is null with low confidence, not invented.
 // A production system would put an LLM extractor in front of this and use these
 // rules as the fallback and the cross-check; the confidence model is already
 // shaped for that hand-off.

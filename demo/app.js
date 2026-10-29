@@ -1,4 +1,4 @@
-// DocMind demo — rendering and interaction only.
+// DocMind demo, rendering and interaction only.
 // Extraction, validation, confidence and queue transitions live in ../src/.
 import { FIXTURES } from "../src/fixtures.js";
 import {
@@ -254,7 +254,7 @@ function renderReview() {
 
 function renderValidation() {
   const entry = current();
-  $("#checks-title").textContent = `${entry.extraction.vendor || entry.label} — checks`;
+  $("#checks-title").textContent = `${entry.extraction.vendor || entry.label}, checks`;
   $("#checks-sub").textContent = entry.extraction.reconciled ? "all blocking checks passed" : "blocking issues present";
 
   $("#checks").replaceChildren(

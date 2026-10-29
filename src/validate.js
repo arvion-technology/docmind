@@ -3,7 +3,7 @@
 // These are the checks a finance reviewer would perform by hand: do the totals
 // add up, does the tax rate match the tax amount, are the dates in order, do the
 // line items sum to the subtotal. Each check returns pass, fail or skip, so the
-// review screen can show what was verified as well as what failed — "no checks
+// review screen can show what was verified as well as what failed, "no checks
 // failed because there was nothing to check" is not the same as "verified".
 
 import { SUPPORTED, taxFor } from "./money.js";

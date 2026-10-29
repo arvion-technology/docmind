@@ -1,8 +1,8 @@
 <div align="center">
-<img src="docs/demo.gif" alt="DocMind — invoice review screen with source text and extracted fields" width="100%" />
+<img src="docs/demo.gif" alt="DocMind, invoice review screen with source text and extracted fields" width="100%" />
 </div>
 
-<sub>Recorded from the live demo — <a href="docs/demo.mp4">MP4</a> · <a href="docs/screenshot.png">static frame</a></sub>
+<sub>Recorded from the live demo, <a href="docs/demo.mp4">MP4</a> · <a href="docs/screenshot.png">static frame</a></sub>
 
 # DocMind
 
@@ -69,7 +69,7 @@ issue date.
   src/queue.js         review → confirmed → exported
           │            corrections re-enter the validator
           ▼
-  src/pipeline.js      processDocument(document) — one path for demo + tests
+  src/pipeline.js      processDocument(document), one path for demo + tests
           │
           ├── demo/app.js   review UI, source highlighting, JSON export
           └── test/         45 node:test cases over fixtures and edge cases
@@ -111,7 +111,7 @@ console.log(markExported({ ...fixed, status: "confirmed" }).status); // exported
 `extract.js` finds fields by labels and layout, not by position. A total is the
 last amount on a line matching `grand total`, `total due`, `amount due`,
 `balance due`, or a bare `total` that is not a subtotal. A tax line is accepted
-when it carries a percentage, or when the line starts with the tax label — that
+when it carries a percentage, or when the line starts with the tax label, that
 second rule is what stops a receipt's `TOTAL (VAT included): £14.80` being read as
 tax. Dates go through four formats (ISO, `14 March 2026`, `March 14, 2026`,
 `05/03/2026`) and slash dates are marked 70% confident because day-first and
@@ -134,7 +134,7 @@ total.
 A field's confidence starts from how it was found (`Vendor: ...` is 0.95, a
 guessed first line is 0.72) and is then reduced by the validation issues it
 participates in. A broken reconciliation takes 0.45 from the total, 0.15 from the
-subtotal and tax, and nothing from the vendor — the failure says nothing about
+subtotal and tax, and nothing from the vendor, the failure says nothing about
 the vendor. The document score is a weighted average: total ×3, subtotal, tax,
 currency and line items ×2, the rest ×1. Anything below 0.8, or any error,
 routes the document to review.
@@ -148,7 +148,7 @@ two blocking reconciliation errors, which is the mix the demo shows.
 human-sourced at confidence 1, re-runs the eight checks and recomputes the
 document score. In the demo, editing the broken total from `3,486.00` to
 `3,456.00` clears the red badge and enables export. Editing it to something else
-keeps the document blocked — the UI cannot be used to launder a wrong number.
+keeps the document blocked, the UI cannot be used to launder a wrong number.
 
 The queue is a one-way state machine: `review → confirmed → exported`. Exported
 entries are immutable, because the export is the record of what was signed off.
@@ -161,15 +161,15 @@ npm test
 
 45 tests on `node:test` across four files:
 
-- `extract.test.js` — money parsing, currency detection, tax rounding, every
+- `extract.test.js`: money parsing, currency detection, tax rounding, every
   fixture's headline fields, all four date formats, three line-item shapes,
   receipt tax handling, vendor fallback and the empty document.
-- `validate.test.js` — each of the eight rules, including the exact 3,000 minor
+- `validate.test.js`: each of the eight rules, including the exact 3,000 minor
   unit difference in the broken fixture, warnings versus errors, and skipped
   checks for receipts with no subtotal.
-- `confidence.test.js` — weighting, issue penalties, review decisions and the
+- `confidence.test.js`: weighting, issue penalties, review decisions and the
   labels the UI uses.
-- `queue.test.js` — classification, corrections that clear errors, corrections
+- `queue.test.js`: classification, corrections that clear errors, corrections
   that do not, confirmation, export immutability, JSON shape and coercion.
 
 The demo has a static check as well:
